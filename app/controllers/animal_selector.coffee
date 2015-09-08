@@ -4,8 +4,6 @@ FilterMenu = require './filter_menu'
 columnize = require '../lib/columnize'
 AnimalDetails = require './animal_details'
 getPhysicallyAdjacentSibling = require '../lib/get_physically_adjacent_sibling'
-SlideTutorial = require 'slide-tutorial'
-slides = require '../lib/tutorial_slides'
 
 class AnimalSelector extends Controller
   set: null
@@ -37,9 +35,6 @@ class AnimalSelector extends Controller
 
     @onSetFilter @set.items
     @onSetSearch @set.items
-
-    @slideTutorial = new SlideTutorial
-      slides: slides
 
   createFilterMenus: ->
     for characteristic in @characteristics
@@ -136,7 +131,7 @@ class AnimalSelector extends Controller
     @el.append details.el
     setTimeout details.show, 125
 
-  #TODO This seems to create a second inSelection annotation which seems like strange thing  
+  #TODO This seems to create a second inSelection annotation which seems like strange thing
   onDetailsRelease: =>
     @classification.annotate inSelection: null, true
 
@@ -147,11 +142,6 @@ class AnimalSelector extends Controller
     @set.filter {}, true
     @searchInput.val ''
     @searchInput.trigger 'keydown'
-
-  handleFirstVisit: ->
-    if @firstVisit
-      @slideTutorial.start()
-      @firstVisit = false
 
   onClickStartTutorial: ->
     @slideTutorial.start()

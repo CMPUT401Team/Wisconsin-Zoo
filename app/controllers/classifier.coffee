@@ -12,14 +12,23 @@ AnimalMenuItem = require './animal_menu_item'
 getTutorialSubject = require '../lib/get_tutorial_subject'
 Notifier = require '../lib/notifier'
 
+SlideTutorial = require 'slide-tutorial'
+slides = require '../lib/tutorial_slides'
+
 class Classifier extends Controller
   className: 'classifier'
 
   tutorial: null
   classification: null
 
+  needsTutorialPopup: true
+  hasShownTutorial: false
+
   constructor: ->
     super
+
+    @slideTutorial = new SlideTutorial
+      slides: slides
 
     @subjectViewer = new SubjectViewer
     @el.append @subjectViewer.el
@@ -28,6 +37,7 @@ class Classifier extends Controller
       set: animals
       characteristics: characteristics
       itemController: AnimalMenuItem
+      slideTutorial: @slideTutorial
     @el.append @animalSelector.el
 
     User.on 'change', @onUserChange
@@ -48,9 +58,15 @@ class Classifier extends Controller
     # Maybe use the notifier here
 
   onUserChange: (e, user) =>
-    @animalSelector.firstVisit = true unless user?.classification_count
-    @animalSelector.handleFirstVisit() if @el.hasClass 'active'
-
+    @needsTutorialPopup = true unless user?.classification_count
     Subject.next()
+
+  activate: =>
+    super
+
+    if @el.hasClass('active') and @needsTutorialPopup and not @hasShownTutorial
+      @slideTutorial.start()
+      @needsTutorialPopup = false
+      @hasShownTutorial = true
 
 module.exports = Classifier
