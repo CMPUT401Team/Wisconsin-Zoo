@@ -49,7 +49,7 @@ stack.el.appendTo  'body'
 
 Footer = require 'zooniverse/controllers/footer'
 footer = new Footer
-siteFooter = $('<div id="site-footer"></div>').append footer.el
+siteFooter = $('<div class="site-footer"></div>').append footer.el
 siteFooter.appendTo 'body'
 
 Notifier.init()
