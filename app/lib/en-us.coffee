@@ -275,6 +275,7 @@ module.exports =
       <ul>
         <li><a href="http://dnr.wi.gov/eek/">http://dnr.wi.gov/eek/</a> - Environmental Education for Kids! (EEK!) is an electronic magazine for kids in grades 4-8 published by the Wisconsin Department of Natural Resources. It includes information on Wisconsin’s wildlife and resources for educators on how to help students use EEK!</li>
         <li><a href="http://projectwild.org/">http://projectwild.org/</a> - Project WILD is a nationwide program that provides resources for educators in teaching about wildlife and their habitat. The materials are available through Project WILD workshops lead by certified instructors. The Project WILD handbook includes more than 165 hands-on activities for PreK-12.</li>
+        <li><a href="http://www.learner.org/jnorth/tm/">http://www.learner.org/jnorth/tm/</a> -Journey North is an effort to track wildlife migration and seasonal change by engaging students and citizen scientists across the globe.  The website includes a number of teaching resources.</li>
       </ul>
     '''
 
