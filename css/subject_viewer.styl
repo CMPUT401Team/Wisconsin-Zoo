@@ -8,7 +8,7 @@
     background: white
     border-radius: 5px
     box-sizing: border-box
-    padding: 10px 10px 94px 10px
+    padding: 10px 10px 50px 10px
     @media $classifier-vertical-stack-breakpoint
       border-radius: 5px 5px 0 0
 
@@ -85,6 +85,21 @@
 
         &.active
           display: block;
+
+      .toggles
+        display: flex;
+        margin: 0.6em 0;
+
+        button
+          border-radius: 3px;
+          margin: 0 4px;
+
+          &:first-child
+            margin-left: 0;
+
+        button.active
+          background: $gold;
+          padding: 3px 6px;
 
     .annotations
       color: $white;
