@@ -18,11 +18,11 @@ class HomePage extends Controller
     @html @template @
 
     @fetchProject()
-    setInterval @fetchProject, REFRESH_INTERVAL
+    setInterval @fetchProject, refreshInterval
 
     unless isDev
       @fetchProjectStats()
-      setInterval @fetchProjectStats, REFRESH_INTERVAL
+      setInterval @fetchProjectStats, refreshInterval
 
   fetchProject: =>
     Api.current.get '/projects/wisconsin', (project) =>

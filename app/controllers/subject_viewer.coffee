@@ -1,14 +1,17 @@
 {Controller} = require 'spine'
-template = require '../views/subject_viewer'
-AnnotationItem = require './annotation_item'
+
 Subject = require 'zooniverse/models/subject'
-splits = require '../lib/splits'
+
+AnnotationItem = require './annotation_item'
+ImageChanger = require './image_changer'
+{ defaultLocation } = require '../lib/config'
 
 class SubjectViewer extends Controller
   classification: null
   active: NaN
 
   className: 'subject-viewer'
+  template: require '../views/subject_viewer'
 
   playTimeouts: null
 
@@ -19,16 +22,16 @@ class SubjectViewer extends Controller
     'click button[name="next"]': 'onClickNext'
 
   elements:
-    '.subject-images figure': 'figures'
+    '.subject-images': 'subjectImages'
     'button[name="favorite"]': 'favoriteBtn'
     '.annotations': 'annotationsContainer'
-    '.extra-message': 'extraMessageContainer'
     'input[name="nothing"]': 'nothingCheckbox'
     'button[name="finish"]': 'finishButton'
     'a.talk-link': 'talkLink'
 
   constructor: ->
     super
+
     @playTimeouts = []
     @el.attr tabindex: 0
     @setClassification @classification
@@ -44,7 +47,16 @@ class SubjectViewer extends Controller
       @classification.on 'change', @onClassificationChange
       @classification.on 'add-species', @onClassificationAddSpecies
 
-      @html template @classification
+      @html @template @classification
+
+      sources = if @classification?.subject.location.length
+        @classification.subject.location
+      else
+        defaultLocation
+
+      @imageChanger = new ImageChanger { sources }
+      @imageChanger.el.appendTo @subjectImages
+
       @onClassificationChange()
     else
       @html ''
@@ -80,13 +92,8 @@ class SubjectViewer extends Controller
     @classification.annotate {nothing}, true
 
   onClickFinish: ->
-    message = splits.get 'classifier_messaging' unless @classification.subject.metadata.tutorial
-    @extraMessageContainer.html message
-    @extraMessageContainer.hide() unless message
-
     @el.addClass 'finished'
     @classification.send() unless @classification.subject.metadata.empty
-    console?.log(@classification)
 
   onClickNext: ->
     Subject.next()

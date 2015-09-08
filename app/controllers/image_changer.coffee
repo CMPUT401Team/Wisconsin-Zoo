@@ -1,5 +1,4 @@
 {Controller} = require 'spine'
-template = require '../views/image_changer'
 
 class ImageChanger extends Controller
   sources: null
@@ -7,6 +6,7 @@ class ImageChanger extends Controller
   active: NaN
 
   className: 'image-changer'
+  template: require '../views/image_changer'
 
   events:
     'click button[name="toggle"]': 'onClickToggle'
@@ -22,7 +22,7 @@ class ImageChanger extends Controller
     @setSources @sources
 
   setSources: (@sources) ->
-    @html template @
+    @html @template @
     @activate 0
 
   onClickToggle: ({currentTarget}) =>

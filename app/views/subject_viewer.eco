@@ -2,17 +2,13 @@
 
 <div class="image-and-filters">
   <div class="images">
-    <div class="subject-image">
-      <img src="<%- @subject.location.standard %>" />
-    </div>
+    <div class="subject-images"></div>
 
     <div class="annotations"></div>
 
-    <div class="extra-message"></div>
-
     <span class="favorite">
       <button name="favorite" title="<%- translate 'classify.favorite' %> [F]" data-shortcut="F">
-        <svg version="1.1" baseProfile="full" 
+        <svg version="1.1" baseProfile="full"
           xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:ev="http://www.w3.org/2001/xml-events"
