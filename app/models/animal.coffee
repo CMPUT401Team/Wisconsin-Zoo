@@ -7,6 +7,9 @@ characteristicIds = (characteristic.id for characteristic in characteristics)
 class Animal extends Model
   @configure 'Animal', 'label', 'images', 'description', characteristicIds...
 
+  @isDeer: (name) -> name.toLowerCase() is 'deer'
+  @deerAttributes: ['fawns', 'antlerless', 'antlered', 'notVisible']
+
   constructor: ->
     super
 
@@ -16,9 +19,5 @@ class Animal extends Model
     @updateAttribute 'label', translate 'span', "animals.#{@id}.label"
 
   toJSON: -> @id
-
-  @isDeer: (name) -> name.toLowerCase() is 'deer'
-
-  @deerAttributes: ['fawns', 'antlerless', 'antlered', 'notVisible']
 
 module.exports = Animal

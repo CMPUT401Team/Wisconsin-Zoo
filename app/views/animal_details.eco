@@ -54,7 +54,7 @@
       <div class="count group">
         <span class="title"><%- translate 'span', "classify.deer.#{label}" %>:</span>
         <% countKeys = [1, 2, 3, 4, 5, '+'] %>
-        <% for count, i in [0, 1, 2, 3, 4, 5, '6+']: %>
+        <% for count, i in [1, 2, 3, 4, 5, '6+']: %>
           <label>
             <input type="radio" name="<%= label %>" value="<%= count %>" data-shortcut="<%= countKeys[i] %>" />
             <span class="label" title="[<%= countKeys[i] %>]"><%= count %></span>
