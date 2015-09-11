@@ -6,4 +6,4 @@
 <div class="site-navigation-item"><%- t 'a', 'navigation.education', href: '#/education' %></div>
 <div class="site-navigation-item"><%- t 'a', 'navigation.team', href: '#/team' %></div>
 <div class="site-navigation-item"><%- t 'a', 'navigation.profile', href: '#/profile' %></div>
-<div class="site-navigation-item"><%- t 'a', 'navigation.talk', href: 'http://talk.snapshotwisconsin.org', target: '_blank' %></div>
+<div class="site-navigation-item"><%- t 'a', 'navigation.talk', href: 'http://talk.usawildlifewatch.org', target: '_blank' %></div>
