@@ -30,7 +30,7 @@ module.exports =
       content: "Welcome to Wildlife Watch! In this project, we are asking you to identify animals found in camera trap photos from around Wisconsin. Your help allows us to better understand how animal populations across the state change through time."
     s2:
       title: "Identifying animals"
-      content: "You are presented with a set of photos on the left and a list of potential animals on the right. When you spot an animal within a photo, simply click the corresponding animal on the right. You will be asked to supply some followup info, such as the number of animals found in the images."
+      content: """You are presented with a set of photos on the left and a list of potential animals on the right. The photos often come as a sequence of 3, called a "capture". Check out other snapshots in the sequence using the buttons below the image, or play them like a flipbook by clicking the play button. When you spot an animal within a photo, simply click the corresponding animal on the right. You will be asked to supply some followup info, such as the number of animals found in the images."""
     s3:
       title: "Filtering by characteristics"
       content: "Occasionally it is difficult to determine which animal is in the photo. Just above the list of animals is a variety of methods to filter the animal list. Selecting different options reduces the number of choices, making your job easier."
