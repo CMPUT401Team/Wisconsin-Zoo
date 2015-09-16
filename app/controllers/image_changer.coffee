@@ -37,11 +37,13 @@ class ImageChanger extends Controller
 
   onClickPlay: =>
     @playButton.addClass 'playing'
+    @playButton.attr 'disabled', true
     @interval = window.setInterval @moveToNextImage, @delay
 
   onClickPause: =>
     window.clearInterval @interval
     @playButton.removeClass 'playing'
+    @playButton.attr 'disabled', false
     @interval = null
 
   activate: (@active) ->
