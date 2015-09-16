@@ -9,3 +9,8 @@
     <button name="toggle" value="<%= i %>"><%= i + 1 %></button>
   <% end %>
 </div>
+
+<div class="changer-controls">
+  <button type="button" name="play"><i rel="play"></i></button>
+  <button type="button" name="pause"><i rel="pause"></i></button>
+</div>

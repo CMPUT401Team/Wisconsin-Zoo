@@ -8,12 +8,18 @@ class ImageChanger extends Controller
   className: 'image-changer'
   template: require '../views/image_changer'
 
+  interval: null
+  delay: 1000
+
   events:
     'click button[name="toggle"]': 'onClickToggle'
+    'click button[name="play"]': 'onClickPlay'
+    'click button[name="pause"]': 'onClickPause'
 
   elements:
     '.images figure': 'images'
     '.toggles button': 'toggles'
+    'button[name="play"]': 'playButton'
 
   constructor: ->
     super
@@ -29,11 +35,28 @@ class ImageChanger extends Controller
     selectedIndex = $(currentTarget).val()
     @activate selectedIndex
 
+  onClickPlay: =>
+    @playButton.addClass 'playing'
+    @interval = window.setInterval @moveToNextImage, @delay
+
+  onClickPause: =>
+    window.clearInterval @interval
+    @playButton.removeClass 'playing'
+    @interval = null
+
   activate: (@active) ->
     @active = +@active %% @sources.length
 
     @setActiveClasses image,  i, @active for image,  i in @images
     @setActiveClasses button, i, @active for button, i in @toggles
+
+  moveToNextImage: =>
+    nextImage = if @sources[@active + 1]?
+      nextImage = @active + 1
+    else
+      0
+
+    @activate nextImage
 
   setActiveClasses: (el, elIndex, activeIndex) ->
     el = $(el)
